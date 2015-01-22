@@ -5,15 +5,20 @@
 
 makeCacheMatrix <- function(x = matrix()) {
         inv <- NULL
+        #set() assign the x matrix to the x variable in the environment
         set <- function(y) {
                 #look up variables in the next environment (<<- vs. <-) 
-               # x <- y  #Let's break it - why does it break? 
-                #The is due to Lexical scoping. The set function environment is different than the makeCacheMatrix()
+                #x <- y  #Let's break it - why does it break when there is a single less than symbol? 
+                #This is due to Lexical scoping. The "set" function environment is different than 
+                #the makeCacheMatrix()
                 x <<- y
                 inv <<- NULL
         }
+        #get() Give access to the matrix which is stored in the makeCacheMatrix environment
         get <- function() x
+        #setInverse() assign the inverse matrix to the inv variable
         setInverse <- function(invertedMatrix) inv <<- invertedMatrix
+        #getInverse() give access to the inverted matrix
         getInverse <- function() inv
         #This list is an object that contains the behaviors defined
         #in the functions above
